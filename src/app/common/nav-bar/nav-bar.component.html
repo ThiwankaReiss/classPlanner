@@ -1,0 +1,66 @@
+
+<form>
+    <input type="text" [(ngModel)]="student && student.studentId"[ngModelOptions]="{standalone:true}" placeholder='id'>
+    <input type="text" [(ngModel)]="student && student.name"[ngModelOptions]="{standalone:true}" placeholder='name'>
+    <input type="text" [(ngModel)]="student && student.email"[ngModelOptions]="{standalone:true}" placeholder='email'>
+    
+
+    <button type="button" (click)="createStudent()">Add Todo</button>
+
+    <button type="button" >Update Todo</button>
+</form>
+<table>
+
+        <tr>
+            <th>Id</th>
+            <th>Todo</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+        <tr *ngFor="let item of itemsList">
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[3]}}</td>
+            <td>{{item[4]}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="setSelectedStudent(item[0],item[1],item[2],item[3],item[4])">
+                    Update
+                  </button>
+            </td>
+            <td><button (click)="deleteStudent(item[0])">Delete</button></td>
+
+        </tr>
+
+</table>
+
+
+<div class="modal fade "  id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+          <div>
+            <input type="text" [(ngModel)]="selectedStudent && selectedStudent.studentId"[ngModelOptions]="{standalone:true}" placeholder='id'>
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="selectedStudent && selectedStudent.name"[ngModelOptions]="{standalone:true}" placeholder='id'>
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="selectedStudent && selectedStudent.email"[ngModelOptions]="{standalone:true}" placeholder='id'>
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="selectedStudent && selectedStudent.status"[ngModelOptions]="{standalone:true}" placeholder='id'>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"  (click)="updateStudent()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
